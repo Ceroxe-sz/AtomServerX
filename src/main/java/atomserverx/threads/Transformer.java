@@ -1,7 +1,7 @@
 package atomserverx.threads;
 
-import asia.ceroxe.management.bufferedFile.SizeCalculator;
-import asia.ceroxe.thread.ThreadManager;
+import plethora.management.bufferedFile.SizeCalculator;
+import plethora.thread.ThreadManager;
 import atomserverx.HostClient;
 import atomserverx.HostSign;
 import atomserverx.LanguageData;
