@@ -6,11 +6,13 @@ import atomserverx.HostClient;
 import atomserverx.HostSign;
 import atomserverx.LanguageData;
 import atomserverx.exceptions.NoMoreNetworkFlowException;
+import plethora.utils.StringUtils;
 
 import java.io.*;
 import java.net.Socket;
 
 import static atomserverx.AtomServerX.IS_DEBUG_MODE;
+import static atomserverx.AtomServerX.loggist;
 import static atomserverx.InfoBox.sayClientConnectDestroyInfo;
 import static atomserverx.InfoBox.sayHostClientDiscInfo;
 import static atomserverx.SocketOperator.*;
@@ -51,7 +53,7 @@ public class Transformer implements Runnable {
                 objectOutputStream.writeInt(len);
                 objectOutputStream.flush();
 
-                hostClient.getVault().mineMib(SizeCalculator.byteToMib(enData.length));
+                hostClient.getVault().mineMib(SizeCalculator.byteToMib(enData.length+100));//real + 0.1kb
                 tellRestRate(hostClient, aTenMibSize, enData.length, hostClient.getLangData());//tell the host client the rest rate.
             }
 
@@ -62,7 +64,9 @@ public class Transformer implements Runnable {
         } catch (IOException e) {
 
             if (IS_DEBUG_MODE) {
-                e.printStackTrace();
+                String exceptionMsg= StringUtils.getExceptionMsg(e);
+                System.out.println(exceptionMsg);
+                loggist.write(exceptionMsg);
             }
             try {
 
@@ -101,7 +105,9 @@ public class Transformer implements Runnable {
 
         } catch (IOException | ClassNotFoundException e) {
             if (IS_DEBUG_MODE) {
-                e.printStackTrace();
+                String exceptionMsg=StringUtils.getExceptionMsg(e);
+                System.out.println(exceptionMsg);
+                loggist.write(exceptionMsg);
             }
             try {
 

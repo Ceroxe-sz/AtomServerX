@@ -7,6 +7,9 @@ target/
 logs/
 *.log
 
+# Test
+test/
+
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml

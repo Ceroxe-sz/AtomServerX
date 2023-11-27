@@ -2,13 +2,13 @@ package atomserverx.threads;
 
 import plethora.management.bufferedFile.BufferedFile;
 import atomserverx.IPChecker;
+import plethora.utils.StringUtils;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import static atomserverx.AtomServerX.IS_DEBUG_MODE;
-import static atomserverx.AtomServerX.sayInfo;
+import static atomserverx.AtomServerX.*;
 import static atomserverx.SocketOperator.closeSocket;
 import static atomserverx.SocketOperator.getInternetAddressAndPort;
 
@@ -80,7 +80,9 @@ public class CheckUpdateThread implements Runnable {
                 }
             } catch (IOException e) {
                 if (IS_DEBUG_MODE) {
-                    e.printStackTrace();
+                    String exceptionMsg= StringUtils.getExceptionMsg(e);
+                    System.out.println(exceptionMsg);
+                    loggist.write(exceptionMsg);
                 }
                 System.exit(-1);
             } catch (IndexOutOfBoundsException e) {

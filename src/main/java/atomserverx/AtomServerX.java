@@ -10,6 +10,7 @@ import atomserverx.threads.AdminThread;
 import atomserverx.threads.CheckUpdateThread;
 import atomserverx.threads.TransferSocketAdapter;
 import atomserverx.threads.Transformer;
+import plethora.utils.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +26,7 @@ import static atomserverx.threads.CheckUpdateThread.WINDOWS_UPDATE_PORT;
 public class AtomServerX {
     public static final String CURRENT_DIR_PATH = System.getProperty("user.dir");
     public static final File VAULT_FILE_DIR = new File(CURRENT_DIR_PATH + File.separator + "vault");
-    public static String EXPECTED_CLIENT_VERSION = "5.7-RELEASE";
+    public static String EXPECTED_CLIENT_VERSION = "5.7-RELEASE|5.8-RELEASE";
     public static final CopyOnWriteArrayList<String> availableVersions = ArrayUtils.stringArrayToList(EXPECTED_CLIENT_VERSION.split("\\|"));
 
     public static int HOST_HOOK_PORT = 801;
@@ -200,7 +201,9 @@ public class AtomServerX {
                                     }
                                 } catch (IOException e) {
                                     if (IS_DEBUG_MODE) {
-                                        e.printStackTrace();
+                                        String exceptionMsg=StringUtils.getExceptionMsg(e);
+                                        System.out.println(exceptionMsg);
+                                        loggist.write(exceptionMsg);
                                     }
                                     continue;
                                 }
