@@ -1,7 +1,7 @@
-package atomserverx.exceptions;
+package atomserverx.core.exceptions;
 
 import atomserverx.AtomServerX;
-import atomserverx.HostClient;
+import atomserverx.core.HostClient;
 
 public class UnSupportHostVersionException extends Exception {
     private UnSupportHostVersionException(String msg) {

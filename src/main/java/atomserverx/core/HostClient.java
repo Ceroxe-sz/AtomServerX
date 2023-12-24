@@ -1,9 +1,9 @@
-package atomserverx;
+package atomserverx.core;
 
 import plethora.print.log.State;
 import plethora.security.encryption.AESUtil;
 import plethora.utils.Sleeper;
-import atomserverx.exceptions.IllegalConnectionException;
+import atomserverx.core.exceptions.IllegalConnectionException;
 
 import javax.crypto.Cipher;
 import java.io.IOException;
@@ -15,10 +15,10 @@ import java.security.PublicKey;
 
 import static atomserverx.AtomServerX.availableHostClient;
 import static atomserverx.AtomServerX.sayInfo;
-import static atomserverx.InfoBox.sayHostClientDiscInfo;
-import static atomserverx.SocketOperator.sendCommand;
-import static atomserverx.SocketOperator.sendStr;
-import static atomserverx.Vault.removeVaultOnAll;
+import static atomserverx.core.InfoBox.sayHostClientDiscInfo;
+import static atomserverx.core.SocketOperator.sendCommand;
+import static atomserverx.core.SocketOperator.sendStr;
+import static atomserverx.core.Vault.removeVaultOnAll;
 
 public final class HostClient {
     public static int SAVE_DELAY = 3000;//3s

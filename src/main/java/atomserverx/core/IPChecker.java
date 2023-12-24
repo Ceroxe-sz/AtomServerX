@@ -1,4 +1,4 @@
-package atomserverx;
+package atomserverx.core;
 
 import java.io.*;
 import java.net.Socket;

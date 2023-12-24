@@ -1,7 +1,8 @@
-package atomserverx;
+package atomserverx.core;
 
+import atomserverx.AtomServerX;
 import plethora.time.Time;
-import atomserverx.exceptions.NoMoreNetworkFlowException;
+import atomserverx.core.exceptions.NoMoreNetworkFlowException;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

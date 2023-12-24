@@ -1,12 +1,13 @@
-package atomserverx;
+package atomserverx.core;
 
+import atomserverx.AtomServerX;
 import plethora.management.bufferedFile.BufferedFile;
 import plethora.print.log.State;
 import plethora.utils.config.LineConfigReader;
-import atomserverx.threads.AdminThread;
-import atomserverx.threads.CheckUpdateThread;
-import atomserverx.threads.TransferSocketAdapter;
-import atomserverx.threads.Transformer;
+import atomserverx.core.threads.AdminThread;
+import atomserverx.core.threads.CheckUpdateThread;
+import atomserverx.core.threads.TransferSocketAdapter;
+import atomserverx.core.threads.Transformer;
 
 import java.io.BufferedWriter;
 import java.io.File;

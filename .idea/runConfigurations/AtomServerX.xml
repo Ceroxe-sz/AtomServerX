@@ -4,7 +4,7 @@
     <module name="AtomServerX" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="atomserverx.*" />
+        <option name="PATTERN" value="atomserverx.core.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

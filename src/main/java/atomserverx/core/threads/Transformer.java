@@ -1,11 +1,11 @@
-package atomserverx.threads;
+package atomserverx.core.threads;
 
 import plethora.management.bufferedFile.SizeCalculator;
 import plethora.thread.ThreadManager;
-import atomserverx.HostClient;
-import atomserverx.HostSign;
-import atomserverx.LanguageData;
-import atomserverx.exceptions.NoMoreNetworkFlowException;
+import atomserverx.core.HostClient;
+import atomserverx.core.HostSign;
+import atomserverx.core.LanguageData;
+import atomserverx.core.exceptions.NoMoreNetworkFlowException;
 import plethora.utils.StringUtils;
 
 import java.io.*;
@@ -13,10 +13,10 @@ import java.net.Socket;
 
 import static atomserverx.AtomServerX.IS_DEBUG_MODE;
 import static atomserverx.AtomServerX.loggist;
-import static atomserverx.InfoBox.sayClientConnectDestroyInfo;
-import static atomserverx.InfoBox.sayHostClientDiscInfo;
-import static atomserverx.SocketOperator.*;
-import static atomserverx.Vault.removeVaultOnAll;
+import static atomserverx.core.InfoBox.sayClientConnectDestroyInfo;
+import static atomserverx.core.InfoBox.sayHostClientDiscInfo;
+import static atomserverx.core.SocketOperator.*;
+import static atomserverx.core.Vault.removeVaultOnAll;
 
 public class Transformer implements Runnable {
     public static int BUFFER_LEN = 256;

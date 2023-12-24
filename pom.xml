@@ -6,7 +6,7 @@
 
     <groupId>asia.ceroxe</groupId>
     <artifactId>AtomServerX</artifactId>
-    <version>8.0-RELEASE</version>
+    <version>8.1-RELEASE</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

@@ -1,15 +1,16 @@
 package atomserverx;
 
+import atomserverx.core.*;
 import plethora.management.bufferedFile.BufferedFile;
 import plethora.print.log.Loggist;
 import plethora.print.log.State;
 import plethora.time.Time;
 import plethora.utils.ArrayUtils;
-import atomserverx.exceptions.*;
-import atomserverx.threads.AdminThread;
-import atomserverx.threads.CheckUpdateThread;
-import atomserverx.threads.TransferSocketAdapter;
-import atomserverx.threads.Transformer;
+import atomserverx.core.exceptions.*;
+import atomserverx.core.threads.AdminThread;
+import atomserverx.core.threads.CheckUpdateThread;
+import atomserverx.core.threads.TransferSocketAdapter;
+import atomserverx.core.threads.Transformer;
 import plethora.utils.StringUtils;
 
 import java.io.File;
@@ -18,15 +19,15 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static atomserverx.InfoBox.*;
-import static atomserverx.SocketOperator.*;
-import static atomserverx.threads.CheckUpdateThread.LINUX_UPDATE_PORT;
-import static atomserverx.threads.CheckUpdateThread.WINDOWS_UPDATE_PORT;
+import static atomserverx.core.InfoBox.*;
+import static atomserverx.core.SocketOperator.*;
+import static atomserverx.core.threads.CheckUpdateThread.LINUX_UPDATE_PORT;
+import static atomserverx.core.threads.CheckUpdateThread.WINDOWS_UPDATE_PORT;
 
 public class AtomServerX {
     public static final String CURRENT_DIR_PATH = System.getProperty("user.dir");
     public static final File VAULT_FILE_DIR = new File(CURRENT_DIR_PATH + File.separator + "vault");
-    public static String EXPECTED_CLIENT_VERSION = "5.7-RELEASE|5.8-RELEASE";
+    public static String EXPECTED_CLIENT_VERSION = "5.7-RELEASE|5.8-RELEASE|5.9-RELEASE";
     public static final CopyOnWriteArrayList<String> availableVersions = ArrayUtils.stringArrayToList(EXPECTED_CLIENT_VERSION.split("\\|"));
 
     public static int HOST_HOOK_PORT = 801;
@@ -191,7 +192,7 @@ public class AtomServerX {
                             while (true) {
 
                                 Socket client;
-                                Socket host;
+                                Socket host = null;
 
                                 try {
                                     if (finalHostClient.getClientServerSocket().isClosed()) {
@@ -218,20 +219,7 @@ public class AtomServerX {
                                     break;//break inner because host server hook is destroyed.
                                 }
 
-                                HostSign hostSign;
-                                try {
-                                    hostSign = TransferSocketAdapter.getThisHostClientHostSign(finalHostClient.getOutPort());
-                                    host = hostSign.host();
-                                } catch (IOException e) {//if host client timeout
-                                    sayClientSuccConnecToChaSerButHostClientTimeOut(finalHostClient);
-                                    sayInfo("Killing client's side connection: " + getInternetAddressAndPort(client));
-                                    closeSocket(client);
-                                    continue;
-                                }
-                                sayClientConnectBuildUpInfo(finalHostClient, client);//say connection build up info
-
-                                //start real transfer service
-                                Transformer.startThread(finalHostClient, host, client, hostSign);
+                                TransformerAdapter.createNewTransformService(finalHostClient,client);
                             }
                         }).start();
                     } catch (UnSupportHostVersionException | IndexOutOfBoundsException | IOException |

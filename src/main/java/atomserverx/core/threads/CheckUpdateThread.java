@@ -1,7 +1,7 @@
-package atomserverx.threads;
+package atomserverx.core.threads;
 
 import plethora.management.bufferedFile.BufferedFile;
-import atomserverx.IPChecker;
+import atomserverx.core.IPChecker;
 import plethora.utils.StringUtils;
 
 import java.io.*;
@@ -9,8 +9,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import static atomserverx.AtomServerX.*;
-import static atomserverx.SocketOperator.closeSocket;
-import static atomserverx.SocketOperator.getInternetAddressAndPort;
+import static atomserverx.core.SocketOperator.closeSocket;
+import static atomserverx.core.SocketOperator.getInternetAddressAndPort;
 
 public class CheckUpdateThread implements Runnable {
     public static int WINDOWS_UPDATE_PORT = 803;

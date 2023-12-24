@@ -1,7 +1,7 @@
-package atomserverx.exceptions;
+package atomserverx.core.exceptions;
 
-import atomserverx.IPChecker;
-import atomserverx.SocketOperator;
+import atomserverx.core.IPChecker;
+import atomserverx.core.SocketOperator;
 
 import java.net.Socket;
 

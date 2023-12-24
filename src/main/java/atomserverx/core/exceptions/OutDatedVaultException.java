@@ -1,6 +1,6 @@
-package atomserverx.exceptions;
+package atomserverx.core.exceptions;
 
-import atomserverx.Vault;
+import atomserverx.core.Vault;
 
 public class OutDatedVaultException extends Exception {
     private OutDatedVaultException(String msg) {

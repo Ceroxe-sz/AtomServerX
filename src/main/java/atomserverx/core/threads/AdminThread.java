@@ -1,4 +1,4 @@
-package atomserverx.threads;
+package atomserverx.core.threads;
 
 public class AdminThread implements Runnable {
     public static int ADMIN_PORT = 945;

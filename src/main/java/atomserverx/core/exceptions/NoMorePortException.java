@@ -1,4 +1,4 @@
-package atomserverx.exceptions;
+package atomserverx.core.exceptions;
 
 import atomserverx.AtomServerX;
 

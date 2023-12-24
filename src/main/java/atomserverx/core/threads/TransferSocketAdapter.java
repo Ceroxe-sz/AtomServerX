@@ -1,10 +1,10 @@
-package atomserverx.threads;
+package atomserverx.core.threads;
 
 import plethora.print.log.State;
 import plethora.utils.Sleeper;
-import atomserverx.HostClient;
-import atomserverx.HostSign;
-import atomserverx.SocketOperator;
+import atomserverx.core.HostClient;
+import atomserverx.core.HostSign;
+import atomserverx.core.SocketOperator;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

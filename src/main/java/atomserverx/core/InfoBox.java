@@ -1,11 +1,11 @@
-package atomserverx;
+package atomserverx.core;
 
 import plethora.print.log.State;
 
 import java.net.Socket;
 
 import static atomserverx.AtomServerX.sayInfo;
-import static atomserverx.SocketOperator.getInternetAddressAndPort;
+import static atomserverx.core.SocketOperator.getInternetAddressAndPort;
 
 public class InfoBox {
     public static void sayHostClientDiscInfo(HostClient hostClient, String subject) {

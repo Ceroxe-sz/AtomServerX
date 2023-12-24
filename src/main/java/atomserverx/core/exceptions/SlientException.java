@@ -1,4 +1,4 @@
-package atomserverx.exceptions;
+package atomserverx.core.exceptions;
 
 public class SlientException extends Exception {
     private SlientException() {
