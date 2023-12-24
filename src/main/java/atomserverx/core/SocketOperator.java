@@ -1,5 +1,7 @@
 package atomserverx.core;
 
+import atomserverx.core.exceptions.NoMoreNetworkFlowException;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -15,9 +17,17 @@ public final class SocketOperator {
 
     public static void sendStr(HostClient hostClient, String str) throws IOException {
         ObjectOutputStream objectOutputStream = hostClient.getWriter();
-        objectOutputStream.writeObject(hostClient.getAESUtil().encrypt(str.getBytes(StandardCharsets.UTF_8)));
+        byte[] data=hostClient.getAESUtil().encrypt(str.getBytes(StandardCharsets.UTF_8));
+        objectOutputStream.writeObject(data);
         objectOutputStream.flush();
 
+        if (hostClient.getVault()!=null){
+            try {
+                hostClient.getVault().mineMib(data.length);
+            } catch (NoMoreNetworkFlowException e) {
+                hostClient.close();
+            }
+        }
     }
 
     public static String receiveStr(HostClient hostClient) throws IOException {
