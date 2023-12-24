@@ -1,6 +1,5 @@
 package atomserverx.core;
 
-import atomserverx.core.exceptions.SlientException;
 import atomserverx.core.threads.TransferSocketAdapter;
 import atomserverx.core.threads.Transformer;
 

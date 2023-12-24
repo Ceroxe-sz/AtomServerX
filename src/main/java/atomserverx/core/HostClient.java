@@ -25,6 +25,7 @@ public final class HostClient {
     public static int DETECTION_DELAY = 1000;
     public static int FAILURE_LIMIT = 5;
     private boolean isStopped = false;
+    private boolean isHttpsMode = false;
     private Vault vault = null;
     private final Socket hostServerHook;
     private ServerSocket clientServerSocket = null;
@@ -214,5 +215,13 @@ public final class HostClient {
 
     private void gc() {
         System.gc();
+    }
+
+    public boolean isHttpsMode() {
+        return isHttpsMode;
+    }
+
+    public void setHttpsMode(boolean httpsMode) {
+        isHttpsMode = httpsMode;
     }
 }

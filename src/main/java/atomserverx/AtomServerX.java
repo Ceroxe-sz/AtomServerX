@@ -164,6 +164,7 @@ public class AtomServerX {
                         //generate them into pieces for use
                         finalHostClient.setVault((Vault) obj[0]);
                         finalHostClient.setLangData((LanguageData) obj[1]);
+                        finalHostClient.setHttpsMode((boolean) obj[2]);
 
                         //arrange port if no specific , or give the chosen one
                         int port;
@@ -219,7 +220,11 @@ public class AtomServerX {
                                     break;//break inner because host server hook is destroyed.
                                 }
 
-                                TransformerAdapter.createNewTransformService(finalHostClient,client);
+                                if (finalHostClient.isHttpsMode()){
+
+                                }else{
+                                    TransformerAdapter.createNewTransformService(finalHostClient,client);
+                                }
                             }
                         }).start();
                     } catch (UnSupportHostVersionException | IndexOutOfBoundsException | IOException |
@@ -276,7 +281,7 @@ public class AtomServerX {
             UnSupportHostVersionException.throwException("_NULL_", hostClient);
         }
 
-        // zh;version;key
+        // zh;version;key;(https-mode)
         LanguageData languageData;
         if (info[0].equals("zh")) {
             languageData = LanguageData.getChineseLanguage();
@@ -311,9 +316,17 @@ public class AtomServerX {
             }
         }
 
-        //if nothing is bad
+        //check is https-mode
+        boolean isHttpsMode=false;
+        if (info.length>3){
+            if (info[4].equals("https-mode")){
+                isHttpsMode=true;
+            }
+        }
+
+        //if nothing is bad,complete checking
         sendStr(hostClient, languageData.CONNECTION_BUILD_UP_SUCCESSFULLY);
-        return new Object[]{currentVault, languageData};
+        return new Object[]{currentVault, languageData,isHttpsMode};
     }
 
     public static Vault getVaultOnVaultDatabase(String key) {
